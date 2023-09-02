@@ -1,5 +1,5 @@
 export type JOB_TYPE = {
-  id: string;
+  id?: string;
   jobTitle: string;
   companyName: string;
   industry: string;
