@@ -1,18 +1,22 @@
 import { INITIAL_VALUES } from "@/utils/createJob";
 import FirstForm from "./FirstForm";
 import { useState } from "react";
-import { InitialValues } from "@/types/CreateJobTypes";
+import { JOB_TYPE } from "@/types/CreateJobTypes";
 import SecondForm from "./SecondForm";
+import { createJob } from "@/api/Job";
 
-const CreateJob = () => {
+const CreateJob: React.FC<CreateJobProps> = ({ onClose }) => {
   const [activeStep, setActiveStep] = useState<number>(1);
   const [initialValues, setInitialValues] = useState(INITIAL_VALUES);
 
-  const onSubmit = (values: InitialValues) => {
-    if (activeStep === 1) {
-      setInitialValues(values);
-      setActiveStep(2);
-    } else console.log("RB:: form submission", values);
+  const onSubmit = (values: JOB_TYPE) => {
+    setInitialValues(values);
+    if (activeStep === 1) setActiveStep(2);
+    else {
+      createJob(values)
+        .then(() => onClose())
+        .catch((e: any) => console.log("RB:: e", e.message));
+    }
   };
 
   return (
@@ -35,6 +39,10 @@ const CreateJob = () => {
       )}
     </div>
   );
+};
+
+type CreateJobProps = {
+  onClose: () => void;
 };
 
 export default CreateJob;

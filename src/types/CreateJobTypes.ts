@@ -1,4 +1,5 @@
-export type InitialValues = {
+export type JOB_TYPE = {
+  id: string;
   jobTitle: string;
   companyName: string;
   industry: string;

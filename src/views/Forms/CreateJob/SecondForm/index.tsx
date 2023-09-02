@@ -1,7 +1,7 @@
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input";
 import Radio from "@/components/Radio/Radio";
-import { InitialValues } from "@/types/CreateJobTypes";
+import { JOB_TYPE } from "@/types/CreateJobTypes";
 import { firstFormValidation } from "@/utils/createJob";
 import { Form, Formik } from "formik";
 import { ChangeEvent } from "react";
@@ -98,30 +98,32 @@ const SecondForm: React.FC<SecondFormProps> = ({
                 <label className="block text-sm font-medium leading-5 text-fontDark">
                   Apply Type
                 </label>
-                <div className="flex space-x-4">
+                <div className="flex items-center gap-4">
                   <Radio
                     label="Quick Apply"
                     id="applyType"
                     name="applyType"
-                    onChange={(e) => {
-                      setFieldValue("applyType", "quickApply");
-                    }}
+                    value={values?.applyType}
+                    onChange={() => setFieldValue("applyType", "quickApply")}
                     checked={values?.applyType === "quickApply"}
                   />
                   <Radio
                     label="External Apply"
                     id="applyType"
                     name="applyType"
-                    onChange={(e) => {
-                      setFieldValue("applyType", "externalApply");
-                    }}
+                    value={values?.applyType}
+                    onChange={() => setFieldValue("applyType", "externalApply")}
                     checked={values?.applyType === "externalApply"}
                   />
                 </div>
               </div>
             </div>
-            <div className="w-full flex justify-end gap-1">
-              <Button text="Back" onClick={onBackClick} />
+            <div className="w-full flex mt-24 justify-end gap-2">
+              <Button
+                text="Back"
+                onClick={onBackClick}
+                className="bg-transparent border border-primary text-primary"
+              />
               <Button type="submit" text="Save" />
             </div>
           </Form>
@@ -132,8 +134,8 @@ const SecondForm: React.FC<SecondFormProps> = ({
 };
 
 type SecondFormProps = {
-  initialValues: InitialValues;
-  submit: (values: InitialValues) => void;
+  initialValues: JOB_TYPE;
+  submit: (values: JOB_TYPE) => void;
   onBackClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 

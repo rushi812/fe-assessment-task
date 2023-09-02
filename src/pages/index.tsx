@@ -1,18 +1,5 @@
-import Header from "@/components/Header";
-import Modal from "@/components/Modal";
-import { useState } from "react";
+import Layout from "@/components/Layout";
 
-export default function Home() {
-  const [open, setOpen] = useState(false);
+const HomePage = () => <Layout />;
 
-  const handleCreateJob = () => {
-    setOpen((prev) => !prev);
-  };
-
-  return (
-    <main>
-      <Header onClick={handleCreateJob} />
-      <Modal open={open} onClose={() => setOpen(false)} />
-    </main>
-  );
-}
+export default HomePage;

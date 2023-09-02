@@ -1,7 +1,7 @@
-import { InitialValues } from "@/types/CreateJobTypes";
+import { JOB_TYPE } from "@/types/CreateJobTypes";
 import * as Yup from "yup";
 
-export const INITIAL_VALUES: InitialValues = {
+export const INITIAL_VALUES: JOB_TYPE = {
   jobTitle: "",
   companyName: "",
   industry: "",
