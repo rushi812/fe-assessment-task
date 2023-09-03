@@ -1,4 +1,11 @@
-const Radio: React.FC<RadioProps> = ({ id, name, onChange, label }) => {
+const Radio: React.FC<RadioProps> = ({
+  id,
+  name,
+  onChange,
+  value,
+  checked,
+  label,
+}) => {
   return (
     <div className="flex items-center gap-1">
       <input
@@ -7,6 +14,8 @@ const Radio: React.FC<RadioProps> = ({ id, name, onChange, label }) => {
         type="radio"
         className="h-5 w-5 border-[#D8D8D8] focus:ring-primary"
         onChange={onChange}
+        value={value}
+        checked={checked}
       />
       <label
         htmlFor={id}

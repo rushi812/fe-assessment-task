@@ -10,6 +10,7 @@ const SecondForm: React.FC<SecondFormProps> = ({
   initialValues,
   submit,
   onBackClick,
+  isEditForm,
 }) => {
   const handleInpChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -32,7 +33,7 @@ const SecondForm: React.FC<SecondFormProps> = ({
       enableReinitialize
     >
       {(props: any) => {
-        const { values, setFieldValue } = props;
+        const { values, handleChange, setFieldValue, handleSubmit } = props;
         return (
           <Form>
             <div className="flex flex-col gap-6">
@@ -88,11 +89,8 @@ const SecondForm: React.FC<SecondFormProps> = ({
                 name="totalEmployee"
                 label="Total employee"
                 value={values?.totalEmployee}
-                onChange={(e) =>
-                  handleInpChange(e, setFieldValue, "totalEmployee")
-                }
+                onChange={handleChange}
                 placeholder="ex. 100"
-                inputMode="numeric"
               />
               <div className="w-full flex flex-col gap-1">
                 <label className="block text-sm font-medium leading-5 text-fontDark">
@@ -103,7 +101,7 @@ const SecondForm: React.FC<SecondFormProps> = ({
                     label="Quick Apply"
                     id="applyType"
                     name="applyType"
-                    value={values?.applyType}
+                    value="quickApply"
                     onChange={() => setFieldValue("applyType", "quickApply")}
                     checked={values?.applyType === "quickApply"}
                   />
@@ -111,7 +109,7 @@ const SecondForm: React.FC<SecondFormProps> = ({
                     label="External Apply"
                     id="applyType"
                     name="applyType"
-                    value={values?.applyType}
+                    value="externalApply"
                     onChange={() => setFieldValue("applyType", "externalApply")}
                     checked={values?.applyType === "externalApply"}
                   />
@@ -124,7 +122,12 @@ const SecondForm: React.FC<SecondFormProps> = ({
                 onClick={onBackClick}
                 className="bg-transparent border border-primary text-primary"
               />
-              <Button type="submit" text="Save" />
+              <Button
+                type="submit"
+                text={isEditForm ? "Update" : "Save"}
+                onClick={handleSubmit}
+                withLoader
+              />
             </div>
           </Form>
         );
@@ -137,6 +140,7 @@ type SecondFormProps = {
   initialValues: JOB_TYPE;
   submit: (values: JOB_TYPE) => void;
   onBackClick: React.MouseEventHandler<HTMLButtonElement>;
+  isEditForm: boolean;
 };
 
 export default SecondForm;

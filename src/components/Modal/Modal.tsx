@@ -1,9 +1,7 @@
 import { Dialog, DialogProps, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-import CreateJob from "@/views/Forms/CreateJob/CreateJob";
-
-const Modal: React.FC<ModalProps> = ({ open, onClose }) => {
+const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -31,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose }) => {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel className="relative transform overflow-hidden w-full max-w-[577px] rounded-[10px] bg-cardColor text-left shadow-sm transition-all border border-cardBorder">
-                <CreateJob onClose={onClose} />
+                {children}
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -41,9 +39,11 @@ const Modal: React.FC<ModalProps> = ({ open, onClose }) => {
   );
 };
 
-type ModalProps = DialogProps<"div"> & {
-  open: boolean;
-  onClose: () => void;
-};
+type ModalProps = React.PropsWithChildren<
+  DialogProps<"div"> & {
+    open: boolean;
+    onClose: () => void;
+  }
+>;
 
 export default Modal;
