@@ -23,7 +23,7 @@ const HomePage = () => {
     if (!id) return;
     deleteJobById(id)
       .then(() => mutate())
-      .catch((e: any) => console.log("RB:: e", e.message));
+      .catch((e: any) => console.error("Error: ", e.message));
   };
 
   const handleEdit = (id?: string) => {

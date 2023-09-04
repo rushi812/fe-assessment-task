@@ -20,6 +20,9 @@ const JobTile: React.FC<JobTileProps> = ({ job, handleDelete, handleEdit }) => {
     applyType,
   } = job;
 
+  const experienceText = getExperienceText(experience);
+  const salaryText = getSalaryText(salary);
+
   return (
     <div className="flex item-start justify-between w-full rounded-[10px] bg-cardColor text-left shadow-sm transition-all border border-cardBorder1 py-4 px-6">
       <div className="flex flex-col sm:flex-col md:flex-row items-start gap-2">
@@ -44,12 +47,16 @@ const JobTile: React.FC<JobTileProps> = ({ job, handleDelete, handleEdit }) => {
             <p className="text-[#212427] font-normal leading-6">
               Part-Time (9.00 am - 5.00 pm IST)
             </p>
-            <p className="text-[#212427] font-normal leading-6">
-              {getExperienceText(experience)}
-            </p>
-            <p className="text-[#212427] font-normal leading-6">
-              {getSalaryText(salary)}
-            </p>
+            {experienceText && (
+              <p className="text-[#212427] font-normal leading-6">
+                {experienceText}
+              </p>
+            )}
+            {salaryText && (
+              <p className="text-[#212427] font-normal leading-6">
+                {salaryText}
+              </p>
+            )}
             {totalEmployee && (
               <p className="text-[#212427] font-normal leading-6">
                 {`${totalEmployee} employees`}

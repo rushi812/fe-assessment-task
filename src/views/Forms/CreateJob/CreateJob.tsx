@@ -9,7 +9,7 @@ import SecondForm from "./SecondForm";
 
 const CreateJob: React.FC<CreateJobProps> = ({ onClose, jobId }) => {
   const [activeStep, setActiveStep] = useState<number>(1);
-  const [initialValues, setInitialValues] = useState(INITIAL_VALUES);
+  const [initialValues, setInitialValues] = useState<JOB_TYPE>(INITIAL_VALUES);
 
   const { job } = useGetJobById(jobId);
 
@@ -24,7 +24,7 @@ const CreateJob: React.FC<CreateJobProps> = ({ onClose, jobId }) => {
     else {
       return apiCall(values)
         .then(() => onClose())
-        .catch((e: any) => console.log("RB:: e", e.message));
+        .catch((e: any) => console.error("Error: ", e.message));
     }
   };
 
