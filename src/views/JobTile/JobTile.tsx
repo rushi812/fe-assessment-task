@@ -22,7 +22,7 @@ const JobTile: React.FC<JobTileProps> = ({ job, handleDelete, handleEdit }) => {
 
   return (
     <div className="flex item-start justify-between w-full rounded-[10px] bg-cardColor text-left shadow-sm transition-all border border-cardBorder1 py-4 px-6">
-      <div className="flex items-start gap-2">
+      <div className="flex flex-col sm:flex-col md:flex-row items-start gap-2">
         <Image
           src="/assets/company-logo.png"
           alt="Company Logo"

@@ -42,7 +42,7 @@ const HomePage = () => {
       </Modal>
       <div className="h-full p-6 bg-bgGrey">
         {!!jobs?.length ? (
-          <div className="grid grid-cols-2 gap-[30px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[30px]">
             {jobs.map((job) => (
               <JobTile
                 key={job.id}
